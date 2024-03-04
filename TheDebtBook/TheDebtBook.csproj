@@ -56,6 +56,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="Pages\AddDebtors.xaml.cs">
+	    <DependentUpon>AddDebtors.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
 	  <MauiXaml Update="AppShell.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
