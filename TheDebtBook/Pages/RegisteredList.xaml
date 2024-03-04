@@ -9,14 +9,14 @@
               RowSpacing="2"
               ColumnSpacing="2">
         </Grid>
-        <ListView ItemsSource="{Binding }"
+        <ListView ItemsSource="{Binding Debtors }"
                   Grid.Row="0"
                   Grid.Column="0"
                   Grid.RowSpan="3">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <TextCell Text="{Binding }"
-                              Detail="{Binding }" />
+                    <TextCell Text="{Binding Value }"
+                              Detail="{Binding Date}" />
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
