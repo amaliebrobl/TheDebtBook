@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TheDebtBook.MainPage"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-             xmlns:behaviors="clr-namespace:CommunityToolkit.Maui.Behaviors;assembly=CommunityToolkit.Maui">
+             xmlns:behaviors="clr-namespace:CommunityToolkit.Maui.Behaviors;assembly=CommunityToolkit.Maui"
+             xmlns:viewModel="clr-namespace:TheDebtBook.ViewModels">
 
     <Grid RowDefinitions="1*, 1*, 1*, 1*, 8*"
           MaximumWidthRequest="400"
@@ -14,7 +15,7 @@
         <Label Grid.Row="0"
        Text="Debtors"
 	   SemanticProperties.Description="Debtors list"
-       HorizontalTextAlignment="Center"
+       HorizontalTextAlignment="Start"
        FontSize="Title"/>
 
         <Button Grid.Row="1"
@@ -22,7 +23,7 @@
 	    SemanticProperties.Hint="Goes to the AddDebtors page"
         WidthRequest="100"
         HeightRequest="50"
-        HorizontalOptions="Center"
+        HorizontalOptions="End"
         Command="{Binding AddDebtors}"
         >
             <Button.Shadow>
@@ -35,7 +36,7 @@
 
 
         <CollectionView Grid.Row="4"
-                ItemsSource="{Binding DebtorsandCreditors}"
+                ItemsSource="{Binding Debtor}"
                 x:Name="Overview">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
@@ -45,12 +46,12 @@
                                 <SwipeItem Text="Delete"
                                            IconImageSource="delete"
                                            BackgroundColor="Tomato"
-                                           Command="{Binding Source={RelativeSource AncestorType={x:Type viewModel:MainViewModel}}, Path=DeleteTodoCommand}" 
-                                           CommandParameter="{Binding XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX}"
+                                           Command="{Binding Source={RelativeSource AncestorType={x:Type viewModel:MainViewModels}}, Path=DeleteDebtorCommand}" 
+                                           CommandParameter="{Binding DeleteDebtorCommand}"
                                 />
                             </SwipeItems>
                         </SwipeView.LeftItems>
-                        <Border Stroke="{StaticResource Primary}"
+                        <Border Stroke="{StaticResource Tertiary}"
                     StrokeThickness="3"
                     Padding="5"
                     Margin="0,10"

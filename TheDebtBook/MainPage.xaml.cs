@@ -1,4 +1,6 @@
-﻿namespace TheDebtBook
+﻿using TheDebtBook.ViewModels;
+
+namespace TheDebtBook
 {
     public partial class MainPage : ContentPage
     {
@@ -7,6 +9,7 @@
         public MainPage()
         {
             InitializeComponent();
+            BindingContext = new MainViewModels();
         }
 
         //private void OnCounterClicked(object sender, EventArgs e)

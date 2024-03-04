@@ -13,7 +13,7 @@ using TheDebtBook.Models;
 namespace TheDebtBook.ViewModels
 {
     class MainViewModels : INotifyPropertyChanged
-    {
+    { 
         public MainViewModels()
         {
             _database = new Database();
@@ -21,7 +21,7 @@ namespace TheDebtBook.ViewModels
             DeleteDebtorCommand = new Command<Debtor>(async (debtor) => await DeleteDebtor(debtor));
             _ = Initialize();
         }
-
+           
         #region INotifyPropertyChanged
         public event PropertyChangedEventHandler? PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
