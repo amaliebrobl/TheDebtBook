@@ -44,14 +44,17 @@
                     <SwipeView>
                         <SwipeView.LeftItems>
                             <SwipeItems Mode="Execute">
+
                                 <SwipeItem Text="Delete"
                                            IconImageSource="delete"
                                            BackgroundColor="Tomato"
                                            Command="{Binding Source={RelativeSource AncestorType={x:Type viewModel:MainViewModels}}, Path=DeleteDebtorCommand}" 
                                            CommandParameter="{Binding DeleteDebtorCommand}"
+
                                 />
                             </SwipeItems>
                         </SwipeView.LeftItems>
+
                         <Border Stroke="{StaticResource Tertiary}"
                     StrokeThickness="3"
                     Padding="5"
@@ -67,6 +70,9 @@
                             <Grid WidthRequest="350"
                   ColumnDefinitions="2*, 5*"
                   RowDefinitions="Auto, 50">
+                                <Label Text="{Binding Name}"
+                                ></Label>
+                                <Label Text="{Binding AccumulatedValue}"></Label>
                             </Grid>
                         </Border>
                     </SwipeView>
