@@ -39,7 +39,8 @@
         WidthRequest="100"
         HeightRequest="50"
         HorizontalOptions="Center"
-        Command="{Binding SaveAddedDebtor}"
+                
+                Command="{Binding SaveAddedDebtor}"
         >
             <Button.Shadow>
                 <Shadow Brush="Black"
@@ -56,6 +57,7 @@
         WidthRequest="100"
         HeightRequest="50"
         HorizontalOptions="Center"
+                Clicked="CancelButtonClicked"
         Command="{Binding CancelAddedDebtor}"
         >
             <Button.Shadow>

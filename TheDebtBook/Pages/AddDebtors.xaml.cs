@@ -6,4 +6,9 @@ public partial class AddDebtors : ContentPage
 	{
 		InitializeComponent();
 	}
+
+    private void CancelButtonClicked(object sender, EventArgs e)
+    {
+        Navigation.PopAsync();
+    }
 }
