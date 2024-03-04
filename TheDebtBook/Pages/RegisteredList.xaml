@@ -4,13 +4,34 @@
              x:Class="TheDebtBook.Pages.RegisteredList"
              Title="RegisteredList">
     <VerticalStackLayout>
-        <ListView ItemsSource="{Binding Deptors}">
+        <Grid ColumnDefinitions="*,*"
+              RowDefinitions="*,*,*,*"
+              RowSpacing="2"
+              ColumnSpacing="2">
+        </Grid>
+        <ListView ItemsSource="{Binding }"
+                  Grid.Row="0"
+                  Grid.Column="0"
+                  Grid.RowSpan="3">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <TextCell Text="{Binding Name}"
-                              Detail="{Binding Description}" />
+                    <TextCell Text="{Binding }"
+                              Detail="{Binding }" />
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+        <Button Text="Close"
+                Grid.Row="3"
+                Grid.Column="0"></Button>
+        <Entry Text="Value"
+               Grid.Row="0"
+               Grid.Column="1"></Entry>
+        <Button Text="Add Value"
+                Grid.Row="1"
+                Grid.Column="1"></Button>
+
+
+
     </VerticalStackLayout>
+
 </ContentPage>
