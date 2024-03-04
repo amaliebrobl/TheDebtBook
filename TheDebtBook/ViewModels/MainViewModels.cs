@@ -7,6 +7,8 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using TheDebtBook.Data;
+using TheDebtBook.Models;
 
 namespace TheDebtBook.ViewModels
 {
@@ -15,11 +17,8 @@ namespace TheDebtBook.ViewModels
         public MainViewModels()
         {
             _database = new Database();
-
-            AddTodoCommand = new Command(async () => await AddNewTodo());
-            CompleteTodoCommand = new Command<TodoItem>(async (item) => await CompleteTodo(item));
-            SwipeCompleteTodoCommand = new Command<TodoItem>(async (item) => await SwipeCompleteTodoExecute(item));
-            DeleteTodoCommand = new Command<TodoItem>(async (item) => await DeleteTodo(item));
+            AddDebtorCommand = new Command(async () => await AddValueMethod());
+            DeleteDebtorCommand = new Command<Debtor>(async (debtor) => await DeleteDebtor(debtor));
             _ = Initialize();
         }
 
@@ -39,60 +38,50 @@ namespace TheDebtBook.ViewModels
         }
         #endregion
 
-        public ObservableCollection<TodoItem> Todos { get; set; } = new();
-        public string NewTodoTitle { get; set; } = string.Empty;
-        public DateTime NewTodoDue { get; set; } = DateTime.Now;
-        public ICommand AddTodoCommand { get; set; }
-        public ICommand CompleteTodoCommand { get; set; }
-        public ICommand SwipeCompleteTodoCommand { get; set; }
-        public ICommand DeleteTodoCommand { get; set; }
+        public ObservableCollection<Debtor> Debtor { get; set; } = new();
+        public ICommand AddDebtorCommand {get;set; }
+        public string NewName { get; set; } = string.Empty;
+        public double AddValue { get; set; } = 0;
+        public DateTime NewDate { get; set; } = DateTime.Now;
+        public ICommand DeleteDebtorCommand { get; set; }
         private readonly Database _database;
 
         #region Methods
         private async Task Initialize()
         {
-            var todos = await _database.GetTodos();
-            foreach (var todo in todos)
+            var debtors = await _database.GetDebtors();
+            foreach (var debtor in debtors)
             {
-                Todos.Add(todo);
+                Debtor.Add(debtor);
             }
         }
 
-        public async Task AddNewTodo()
+        // Main metode - adder new debtor og adder (første) value
+        public async Task AddValueMethod()
         {
-            var todo = new TodoItem
+            var debtor = new Debtor
             {
-                Due = NewTodoDue,
-                Title = NewTodoTitle
+                Date = NewDate,
+                Name = NewName,
+                Value = AddValue
             };
-            var inserted = await _database.AddTodo(todo);
+            var inserted = await _database.AddValue(debtor);
             if (inserted != 0)
             {
-                Todos.Add(todo);
-                NewTodoTitle = String.Empty;
-                NewTodoDue = DateTime.Now;
-                RaisePropertyChanged(nameof(NewTodoDue), nameof(NewTodoTitle));
+                Debtor.Add(debtor);
+                NewName = String.Empty;
+                NewDate = DateTime.Now;
+                AddValue = 0;
+                RaisePropertyChanged(nameof(NewName), nameof(NewDate), nameof(AddValue));
             }
         }
 
-        public async Task CompleteTodo(TodoItem todoitem)
+        public async Task DeleteDebtor(Debtor debtor)
         {
-            var completed = await _database.UpdateTodo(todoitem);
-            OnPropertyChanged(nameof(Todos));
-        }
-
-        public async Task SwipeCompleteTodoExecute(TodoItem todoitem)
-        {
-            todoitem.Done = true;
-            var completed = await _database.UpdateTodo(todoitem);
-        }
-
-        public async Task DeleteTodo(TodoItem todoitem)
-        {
-            var deleted = await _database.DeleteTodo(todoitem);
+            var deleted = await _database.DeleteDebtor(debtor);
             if (deleted != 0)
             {
-                Todos?.Remove(todoitem);
+                Debtor?.Remove(debtor);
             }
         }
 

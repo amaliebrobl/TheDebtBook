@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using TheDebtBook.Models;
 using TheDebtBook.Pages;
 
-namespace TheDebtBook.Database
+namespace TheDebtBook.Data
 {
     internal class Database
     {
@@ -31,7 +31,6 @@ namespace TheDebtBook.Database
             await _connection.CreateTableAsync<Debtor>();
         }
 
-        // Adder 
         public async Task<List<Debtor>> GetDebtors()
         {
             return await _connection.Table<Debtor>().ToListAsync();
@@ -47,6 +46,11 @@ namespace TheDebtBook.Database
         public async Task<double> AddValue(Debtor value)
         {
             return await _connection.InsertAsync(value);
+        }
+
+        public async Task<int> DeleteDebtor(Debtor debtor)
+        {
+            return await _connection.DeleteAsync(debtor);
         }
 
         public async Task<int> UpdateDebtorList(Debtor debtor)
