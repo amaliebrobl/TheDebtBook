@@ -3,10 +3,67 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TheDebtBook.Pages.AddDebtors"
              Title="AddDebtors">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+
+    <Grid RowDefinitions="1*, 1*, 1*, 1*, 8*"
+          MaximumWidthRequest="400"
+          ColumnSpacing="2"
+          Padding="20">
+
+        <Label Grid.Row="0"
+       Text="Add Debtor"
+	   SemanticProperties.HeadingLevel="Level1"
+	   SemanticProperties.Description="add debtor"
+       HorizontalTextAlignment="Center"
+       FontSize="Title"/>
+
+        <Entry Grid.Row="1"
+       HorizontalOptions="Center"
+       Placeholder="Enter the name of the debtor"
+	   SemanticProperties.Hint="Name of the new debtor"
+       WidthRequest="300"
+	   Text="{Binding AddNewDebtor}"
+       />
+
+        <Entry Grid.Row="2"
+       HorizontalOptions="Center"
+       Placeholder="Enter initial value"
+	   SemanticProperties.Hint="Initial Value"
+       WidthRequest="300"
+	   Text="{Binding AddInitialValue}"
+       />
+
+        <Button Grid.Row="3"
+                Grid.Column="0"
+        Text="Save"
+	    SemanticProperties.Hint="Saves the added name and initial value"
+        WidthRequest="100"
+        HeightRequest="50"
+        HorizontalOptions="Center"
+        Command="{Binding SaveAddedDebtor}"
+        >
+            <Button.Shadow>
+                <Shadow Brush="Black"
+                        Offset="5,5"
+                        Radius="10"
+                        Opacity="0.8" />
+            </Button.Shadow>
+        </Button>
+
+        <Button Grid.Row="4"
+                Grid.Column="1"
+        Text="Cancel"
+	    SemanticProperties.Hint="Cancels the added debtor and initial value"
+        WidthRequest="100"
+        HeightRequest="50"
+        HorizontalOptions="Center"
+        Command="{Binding CancelAddedDebtor}"
+        >
+            <Button.Shadow>
+                <Shadow Brush="Black"
+                        Offset="5,5"
+                        Radius="10"
+                        Opacity="0.8" />
+            </Button.Shadow>
+        </Button>
+    </Grid>
 </ContentPage>
