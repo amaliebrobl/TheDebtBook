@@ -12,7 +12,7 @@ namespace TheDebtBook
             Routing.RegisterRoute("mainPage",typeof(MainPage));
             GoToAsync("//mainPage");
 
-            //InitializeComponent();
+            InitializeComponent();
         }
     }
 }
