@@ -7,10 +7,10 @@ namespace TheDebtBook
         public AppShell()
         {
  
-            Routing.RegisterRoute("addDeptors",typeof(AddDebtors));
-            Routing.RegisterRoute("registeredList",typeof(RegisteredList));
-            Routing.RegisterRoute("mainPage",typeof(MainPage));
-            GoToAsync("//mainPage");
+            //Routing.RegisterRoute("addDeptors",typeof(AddDebtors));
+            //Routing.RegisterRoute("registeredList",typeof(RegisteredList));
+            //Routing.RegisterRoute("mainPage",typeof(MainPage));
+            //GoToAsync("//mainPage");
 
             InitializeComponent();
         }

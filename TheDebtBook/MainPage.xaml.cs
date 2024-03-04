@@ -1,4 +1,5 @@
 ﻿using TheDebtBook.ViewModels;
+using TheDebtBook.Pages;
 
 namespace TheDebtBook
 {
@@ -12,15 +13,19 @@ namespace TheDebtBook
             BindingContext = new MainViewModels();
         }
 
-        private async void OpenAddDebtors(object parameter)
+        private void AddButtonClicked(object sender, EventArgs e)
         {
-            await Shell.Current.GoToAsync("//addDebtors");
+            Navigation.PushAsync(new AddDebtors());
         }
+        //private async void OpenAddDebtors(object parameter)
+        //{
+        //    await Shell.Current.GoToAsync("//addDebtors");
+        //}
 
-        private async void OpenRegisteredList(object parameter)
-        {
-            await Shell.Current.GoToAsync("//registeredList");
-        }
+        //private async void OpenRegisteredList(object parameter)
+        //{
+        //    await Shell.Current.GoToAsync("//registeredList");
+        //}
 
         //private void OnCounterClicked(object sender, EventArgs e)
         //{
