@@ -20,8 +20,8 @@ public partial class AddDebtors : ContentPage
     //}
 
     //// Går tilbage til Main() page når der trykkes 'cancel'
-    //private void CancelButtonClicked(object sender, EventArgs e)
-    //{
-    //    Navigation.PopAsync();
-    //}
+    private void CancelButtonClicked(object sender, EventArgs e)
+    {
+        Navigation.PopAsync();
+    }
 }

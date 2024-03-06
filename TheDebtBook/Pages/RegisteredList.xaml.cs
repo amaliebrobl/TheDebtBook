@@ -6,4 +6,10 @@ public partial class RegisteredList : ContentPage
 	{
 		InitializeComponent();
 	}
+
+
+    private void CloseButtonClicked(object sender, EventArgs e)
+    {
+        Navigation.PopAsync();
+    }
 }

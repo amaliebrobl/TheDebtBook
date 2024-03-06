@@ -23,7 +23,7 @@
         <Entry Grid.Row="2"
        HorizontalOptions="Center"
        Placeholder="Enter initial value"
-       Text="{Binding AddDebtorCommand}"
+       Text="{Binding Value}"
        />
 
         <Button Grid.Row="3"
@@ -44,9 +44,7 @@
         <Button Grid.Row="4"
                 Grid.Column="1"
         Text="Cancel"
-	    SemanticProperties.Hint="Cancels the added debtor and initial value"
-        WidthRequest="100"
-        HeightRequest="50"
+	    Clicked="CancelButtonClicked"
         HorizontalOptions="Center"
         >
             <Button.Shadow>
