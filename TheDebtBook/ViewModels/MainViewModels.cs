@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using TheDebtBook.Data;
 using TheDebtBook.Models;
+using CommunityToolkit.mvvm;
 
 namespace TheDebtBook.ViewModels
 {
@@ -57,6 +58,8 @@ namespace TheDebtBook.ViewModels
         }
 
         // Main metode - adder new debtor og adder (første) value
+
+        [RelayCommand]
         public async Task AddValueMethod()
         {
             var debtor = new Debtor
