@@ -9,24 +9,47 @@
               RowSpacing="2"
               ColumnSpacing="2">
         </Grid>
-        <ListView ItemsSource="{Binding Debtors }"
-                  Grid.Row="0"
-                  Grid.Column="0"
-                  Grid.RowSpan="3">
+        <Label Text="{Binding Debtor.Name}"
+               FontSize="Title"
+               Grid.Row="0"></Label>
+        <Label Text="Debts"
+               FontSize="Title"
+               Grid.Row="1"></Label>
+        <ListView x:Name="Debtors"
+                  ItemsSource="{Binding Values }"
+                  Grid.Row="3"
+                  Grid.Column="0">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <TextCell Text="{Binding Value }"
-                              Detail="{Binding Date}" />
+                    <ViewCell>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Text="{Binding ValueID}"
+                                   Grid.Column="0" />
+                            <Label Text="{Binding Date}"
+                                   Grid.Column="1" />
+                            <Label Text="{Binding Value, StringFormat='{0:C}'}"
+                                   Grid.Column="2" />
+                        </Grid>
+                    </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
         <Button Text="Close"
                 Grid.Row="3"
-                Grid.Column="0"></Button>
-        <Entry Text="Value"
+                Grid.Column="0"
+                Clicked="CloseButtonClicked"></Button>
+        <Entry Placeholder="Enter value"
+               Text="{Binding Value}"
                Grid.Row="0"
                Grid.Column="1"></Entry>
+        <DatePicker Date ="{Binding Date}"></DatePicker>
         <Button Text="Add Value"
+                Command="{Binding AddValueCommand}"
                 Grid.Row="1"
                 Grid.Column="1"></Button>
 
