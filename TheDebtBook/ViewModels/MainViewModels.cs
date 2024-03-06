@@ -36,14 +36,14 @@ namespace TheDebtBook.ViewModels
 
             var values = new Values()
             {
-                Value = Value ?? 0,
-                Date = Date ?? DateTime.Now,
+                Value = debitvalue ?? 0,
+                Date = date ?? DateTime.Now,
                 DebtorId = Debtor.Id
 
             };
 
             AddValueAsync(values);
-            UpdateDebtorList(values.ValueId);
+            UpdateAccumulatedValuesAsync(values.ValueId);
         }
 
         [RelayCommand]
@@ -64,9 +64,9 @@ namespace TheDebtBook.ViewModels
         private async void LoadDataAsync(int debtorID)
         {
             var debtorDatabase = await _database.GetDebtorID(debtorID);
-            Debtor = debtorDatabase;
+            var Debtor = debtorDatabase;
             var valuesDatabase = await _database.GetAccumulatedValues(debtorID);
-            Values = new List<Values>(valuesDatabase);
+            var Values = new List<Values>(valuesDatabase);
         }
 
         private async void AddValueAsync(Values values)
