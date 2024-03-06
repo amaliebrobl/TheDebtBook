@@ -9,12 +9,11 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using TheDebtBook.Data;
 using TheDebtBook.Models;
-using CommunityToolkit.mvvm;
 
 namespace TheDebtBook.ViewModels
 {
     class MainViewModels : INotifyPropertyChanged
-    { 
+    {
         public MainViewModels()
         {
             _database = new Database();
@@ -22,7 +21,7 @@ namespace TheDebtBook.ViewModels
             DeleteDebtorCommand = new Command<Debtor>(async (debtor) => await DeleteDebtor(debtor));
             _ = Initialize();
         }
-           
+
         #region INotifyPropertyChanged
         public event PropertyChangedEventHandler? PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
@@ -40,7 +39,7 @@ namespace TheDebtBook.ViewModels
         #endregion
 
         public ObservableCollection<Debtor> Debtor { get; set; } = new();
-        public ICommand AddDebtorCommand {get;set; }
+        public ICommand AddDebtorCommand { get; set; }
         public string NewName { get; set; } = string.Empty;
         public double AddValue { get; set; } = 0;
         public DateTime NewDate { get; set; } = DateTime.Now;
@@ -58,8 +57,6 @@ namespace TheDebtBook.ViewModels
         }
 
         // Main metode - adder new debtor og adder (første) value
-
-        [RelayCommand]
         public async Task AddValueMethod()
         {
             var debtor = new Debtor

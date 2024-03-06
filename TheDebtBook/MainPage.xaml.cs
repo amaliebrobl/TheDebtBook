@@ -17,6 +17,7 @@ namespace TheDebtBook
         {
             Navigation.PushAsync(new AddDebtors());
         }
+
         //private async void OpenAddDebtors(object parameter)
         //{
         //    await Shell.Current.GoToAsync("//addDebtors");

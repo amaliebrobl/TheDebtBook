@@ -7,7 +7,7 @@ public partial class AddDebtors : ContentPage
 	public AddDebtors()
 	{
 		InitializeComponent();
-        BindingContext = new MainViewModels(); // Sætter BindingContext til en instans af MainViewModels
+        //BindingContext = new MainViewModels(); // Sætter BindingContext til en instans af MainViewModels
     }
 
     private async void AddButtonClicked(object sender, EventArgs e)

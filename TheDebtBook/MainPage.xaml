@@ -25,7 +25,6 @@
         HeightRequest="50"
         HorizontalOptions="End"
         Clicked="AddButtonClicked"
-        Command="{Binding AddDebtorsCommand}"
         >
             <Button.Shadow>
                 <Shadow Brush="Black"
