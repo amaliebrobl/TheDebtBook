@@ -9,7 +9,7 @@ namespace TheDebtBook.Models
 {
     public class Debtor
     {
-        [PrimaryKey, AutoIncrement]
+        [PrimaryKey]
 
         public string Name { get; set; }
         public double Value { get; set; }

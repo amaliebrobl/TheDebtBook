@@ -21,7 +21,7 @@
        Placeholder="Enter the name of the debtor"
 	   SemanticProperties.Hint="Name of the new debtor"
        WidthRequest="300"
-	   Text="{Binding AddNewDebtor}"
+	   Text="{Binding AddDebtorCommand}"
        />
 
         <Entry Grid.Row="2"
@@ -29,7 +29,7 @@
        Placeholder="Enter initial value"
 	   SemanticProperties.Hint="Initial Value"
        WidthRequest="300"
-	   Text="{Binding AddInitialValue}"
+	   Text="{Binding AddDebtorCommand}"
        />
 
         <Button Grid.Row="3"
@@ -40,7 +40,7 @@
         HeightRequest="50"
         HorizontalOptions="Center"
                 
-                Command="{Binding SaveAddedDebtor}"
+                Command="{Binding AddDebtorCommand}"
         >
             <Button.Shadow>
                 <Shadow Brush="Black"
