@@ -32,7 +32,7 @@ namespace TheDebtBook.ViewModels
                 return;
             }
 
-            _navigation.PushAsync(new RegisteredList(debtorId));
+            _navigation.PushAsync(new MainPage());
         }
 
         public ValuesListModelView(INavigation navigation)

@@ -60,6 +60,9 @@
 	  <Compile Update="Pages\AddDebtors.xaml.cs">
 	    <DependentUpon>AddDebtors.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="Pages\DebtorListView.xaml.cs">
+	    <DependentUpon>DebtorListView.xaml</DependentUpon>
+	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
@@ -67,6 +70,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\AddDebtors.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\DebtorListView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\RegisteredList.xaml">

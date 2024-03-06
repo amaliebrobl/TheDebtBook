@@ -5,78 +5,18 @@
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:behaviors="clr-namespace:CommunityToolkit.Maui.Behaviors;assembly=CommunityToolkit.Maui"
              xmlns:viewModel="clr-namespace:TheDebtBook.ViewModels">
-
-    <Grid RowDefinitions="1*, 1*, 1*, 1*, 8*"
-          MaximumWidthRequest="400"
-          ColumnSpacing="2"
-          Padding="20">
-
-
-        <Label Grid.Row="0"
-       Text="Debtors"
-	   SemanticProperties.Description="Debtors list"
-       HorizontalTextAlignment="Start"
-       FontSize="Title"/>
-
-        <Button Grid.Row="1"
-        Text="Add"
-	    SemanticProperties.Hint="Goes to the AddDebtors page"
-        WidthRequest="100"
-        HeightRequest="50"
-        HorizontalOptions="End"
-        Clicked="AddButtonClicked"
-        >
-            <Button.Shadow>
-                <Shadow Brush="Black"
-                        Offset="5,5"
-                        Radius="10"
-                        Opacity="0.8" />
-            </Button.Shadow>
-        </Button>
-
-
-        <CollectionView Grid.Row="4"
-                ItemsSource="{Binding Debtor}"
-                x:Name="Overview">
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <SwipeView>
-                        <SwipeView.LeftItems>
-                            <SwipeItems Mode="Execute">
-
-                                <SwipeItem Text="Delete"
-                                           IconImageSource="delete"
-                                           BackgroundColor="Tomato"
-                                           Command="{Binding Source={RelativeSource AncestorType={x:Type viewModel:MainViewModels}}, Path=DeleteDebtorCommand}" 
-                                           CommandParameter="{Binding DeleteDebtorCommand}"
-
-                                />
-                            </SwipeItems>
-                        </SwipeView.LeftItems>
-
-                        <Border Stroke="{StaticResource Tertiary}"
-                    StrokeThickness="3"
-                    Padding="5"
-                    Margin="0,10"
-                    StrokeShape="RoundRectangle 10"
-                    >
-                            <Border.Shadow>
-                                <Shadow Brush="Black"
-                            Offset="20,20"
-                            Radius="40"
-                            Opacity="0.8" />
-                            </Border.Shadow>
-                            <Grid WidthRequest="350"
-                  ColumnDefinitions="2*, 5*"
-                  RowDefinitions="Auto, 50">
-                                <Label Text="{Binding Name}"
-                                ></Label>
-                                <Label Text="{Binding AccumulatedValue}"></Label>
-                            </Grid>
-                        </Border>
-                    </SwipeView>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+    <Grid Padding="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Button Text="Add Debtor"
+                Grid.Column="2"
+                Clicked="AddButtonClicked"
+                HorizontalOptions="Center"
+                VerticalOptions="Start"
+                WidthRequest="200"
+                HeightRequest="50" />
     </Grid>
 </ContentPage>

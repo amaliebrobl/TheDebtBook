@@ -4,10 +4,11 @@ namespace TheDebtBook.Pages;
 
 public partial class AddDebtors : ContentPage
 {
+    AddDebtorViewModel viewModel = new AddDebtorViewModel();
 	public AddDebtors()
 	{
 		InitializeComponent();
-        //BindingContext = new MainViewModels(); // Sætter BindingContext til en instans af MainViewModels
+        BindingContext = viewModel; // Sætter BindingContext til en instans af MainViewModels
     }
 
     //private async void AddButtonClicked(object sender, EventArgs e)

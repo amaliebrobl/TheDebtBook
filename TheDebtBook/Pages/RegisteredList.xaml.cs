@@ -1,10 +1,16 @@
+using TheDebtBook.ViewModels;
+
 namespace TheDebtBook.Pages;
 
 public partial class RegisteredList : ContentPage
 {
-	public RegisteredList(int Id)
-	{
+    ValuesListModelView _modelView;
+	public RegisteredList(INavigation navigaton)
+    {
+        _modelView = new ValuesListModelView(navigaton);
 		InitializeComponent();
+        BindingContext = _modelView;
+        
 	}
 
 

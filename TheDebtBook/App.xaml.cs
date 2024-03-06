@@ -1,4 +1,7 @@
+using TheDebtBook.Pages;
+
 namespace TheDebtBook;
+
 
 public partial class App : Application
 {

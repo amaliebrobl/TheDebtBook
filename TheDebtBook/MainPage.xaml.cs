@@ -3,20 +3,31 @@ using TheDebtBook.Pages;
 
 namespace TheDebtBook
 {
+
+
     public partial class MainPage : ContentPage
     {
-        //int count = 0;
-
         public MainPage()
         {
             InitializeComponent();
-            
+            var debtorListView = new DebtorListView(Navigation);
+            Grid.SetColumn(debtorListView, 0);
+            Grid.SetColumnSpan(debtorListView, 2);
+            ((Grid)Content).Children.Add(debtorListView);
         }
 
         private void AddButtonClicked(object sender, EventArgs e)
         {
             Navigation.PushAsync(new AddDebtors());
         }
+
+    }
+
+
+
+
+
+
 
         //private async void OpenAddDebtors(object parameter)
         //{
@@ -41,4 +52,4 @@ namespace TheDebtBook
         //}
     }
 
-}
+
