@@ -46,6 +46,13 @@ namespace TheDebtBook.Data
             return await query.FirstOrDefaultAsync();
         }
 
+        public async Task<Debtor> GetDebtorID(int Debtorid)
+        {
+            var query = _connection.Table<Debtor>().Where(t => t.Id == Debtorid);
+
+            return await query.FirstOrDefaultAsync();
+        }
+
         public async Task<Values> GetValue(int valueid)
         {
             var query = _connection.Table<Values>().Where(t => t.ValueId == valueid);
@@ -84,10 +91,9 @@ namespace TheDebtBook.Data
             return await _connection.UpdateAsync(value);
         }
 
-        public async Task<List<Values>> GetAccumulatedValues(string name)
+        public async Task<List<Values>> GetAccumulatedValues(int id)
         {
-            var query = _connection.Table<Values>().Where(t => t.Name == name);
-
+            var query = _connection.Table<Values>().Where(t => t.DebtorId == id);
             return await query.ToListAsync();
         }
     }

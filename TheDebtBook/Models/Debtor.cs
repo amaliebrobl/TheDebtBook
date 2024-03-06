@@ -10,6 +10,7 @@ namespace TheDebtBook.Models
     public class Debtor
     {
         [PrimaryKey, AutoIncrement] 
+        public int Id { get; set; } = 0;
         public string Name { get; set; } = "";
         public double AccumulatedValues { get; set; } = 0;
     }

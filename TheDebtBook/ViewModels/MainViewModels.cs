@@ -9,82 +9,82 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using TheDebtBook.Data;
 using TheDebtBook.Models;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 
 namespace TheDebtBook.ViewModels
 {
-    class MainViewModels : INotifyPropertyChanged
+    public partial class MainViewModels : ObservableObject
     {
-        public MainViewModels()
-        {
-            _database = new Database();
-            AddDebtorCommand = new Command(async () => await AddValueMethod());
-            DeleteDebtorCommand = new Command<Debtor>(async (debtor) => await DeleteDebtor(debtor));
-            _ = Initialize();
-        }
+        private readonly Database _database = new Database();
 
-        #region INotifyPropertyChanged
-        public event PropertyChangedEventHandler? PropertyChanged;
-        protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
+        [ObservableProperty] public Debtor? _debtor;
+
+        [ObservableProperty] public Values? _values;
+
+        [ObservableProperty] public int? debitvalue;
+
+        [ObservableProperty] public DateTime? date;
+
+        [RelayCommand]
+        public void AddValue()
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-        public void RaisePropertyChanged(params string[] properties)
-        {
-            foreach (var propertyName in properties)
+            if (Debtor == null)
             {
-                PropertyChanged?.Invoke(this, new
-                PropertyChangedEventArgs(propertyName));
+                return;
             }
-        }
-        #endregion
 
-        public ObservableCollection<Debtor> Debtor { get; set; } = new();
-        public ICommand AddDebtorCommand { get; set; }
-        public string NewName { get; set; } = string.Empty;
-        public double AddValue { get; set; } = 0;
-        public DateTime NewDate { get; set; } = DateTime.Now;
-        public ICommand DeleteDebtorCommand { get; set; }
-        private readonly Database _database;
-
-        #region Methods
-        private async Task Initialize()
-        {
-            var debtors = await _database.GetDebtors();
-            foreach (var debtor in debtors)
+            var values = new Values()
             {
-                Debtor.Add(debtor);
-            }
-        }
+                Value = Value ?? 0,
+                Date = Date ?? DateTime.Now,
+                DebtorId = Debtor.Id
 
-        // Main metode - adder new debtor og adder (første) value
-        public async Task AddValueMethod()
-        {
-            var debtor = new Debtor
-            {
-                Date = NewDate,
-                Name = NewName,
-                Value = AddValue
             };
-            var inserted = await _database.AddValue(debtor);
-            if (inserted != 0)
-            {
-                Debtor.Add(debtor);
-                NewName = String.Empty;
-                NewDate = DateTime.Now;
-                AddValue = 0;
-                RaisePropertyChanged(nameof(NewName), nameof(NewDate), nameof(AddValue));
-            }
+
+            AddValueAsync(values);
+            UpdateDebtorList(values.ValueId);
         }
 
-        public async Task DeleteDebtor(Debtor debtor)
+        [RelayCommand]
+        public void LoadData()
         {
-            var deleted = await _database.DeleteDebtor(debtor);
-            if (deleted != 0)
+            if (_debtor == null)
             {
-                Debtor?.Remove(debtor);
+                return;
             }
+            LoadDataAsync(_debtor.Id);
         }
 
-        #endregion Methods
+        public MainViewModels(int debtorID)
+        {
+            LoadDataAsync(debtorID);
+        }
+
+        private async void LoadDataAsync(int debtorID)
+        {
+            var debtorDatabase = await _database.GetDebtorID(debtorID);
+            Debtor = debtorDatabase;
+            var valuesDatabase = await _database.GetAccumulatedValues(debtorID);
+            Values = new List<Values>(valuesDatabase);
+        }
+
+        private async void AddValueAsync(Values values)
+        {
+            await _database.AddValue(values);
+            LoadDataAsync(values.DebtorId);
+        }
+
+        private async void UpdateAccumulatedValuesAsync(int debtorid)
+        {
+            var valuesDatabase = await _database.GetAccumulatedValues(debtorid);
+            var accumulatedValues = valuesDatabase.Sum(x => x.Value);
+            var debtorDatabase = await _database.GetDebtorID(debtorid);
+            debtorDatabase.AccumulatedValues = accumulatedValues;
+            await _database.UpdateDebtorList(debtorDatabase);
+            Debtor = debtorDatabase;
+        }
+
+
     }
 }

@@ -14,7 +14,7 @@ namespace TheDebtBook.Models
         public int ValueId { get; set; }
         public int Value { get; set; }
         public DateTime Date { get; set; }
-        public string Name { get; set; }
+        public int DebtorId { get; set; }
 
     }
 }
