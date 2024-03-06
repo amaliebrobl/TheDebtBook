@@ -18,14 +18,14 @@ namespace TheDebtBook.Data
             var dataDir = FileSystem.AppDataDirectory;
             var databasePath = Path.Combine(dataDir, "TheDebtBook.db");
             string _dbEncryptionKey = SecureStorage.GetAsync("dbKey").Result;
-            
+
             if (string.IsNullOrEmpty(_dbEncryptionKey))
             {
                 Guid g = new Guid();
                 _dbEncryptionKey = g.ToString();
                 SecureStorage.SetAsync("dbKey", _dbEncryptionKey);
             }
-            
+
             var dbOptions = new SQLiteConnectionString(databasePath, true);
             _connection = new SQLiteAsyncConnection(dbOptions);
             

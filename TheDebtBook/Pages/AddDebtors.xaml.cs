@@ -12,7 +12,7 @@ public partial class AddDebtors : ContentPage
 
     private async void AddButtonClicked(object sender, EventArgs e)
     {
-        if(BindingContext is MainViewModels viewModel)
+        if (BindingContext is MainViewModels viewModel)
         {
             await viewModel.AddValueMethod(); // Kalder AddValueMethod fra MainViewModels
             await Navigation.PopAsync(); // Går tilbage til hovedsiden (Main-page)
