@@ -9,11 +9,8 @@ namespace TheDebtBook.Models
 {
     public class Debtor
     {
-        [PrimaryKey]
-
-        public string Name { get; set; }
-        public double Value { get; set; }
-        public DateTime Date { get; set; }
-        public double AccumulatedValues { get; set; }
+        [PrimaryKey, AutoIncrement] 
+        public string Name { get; set; } = "";
+        public double AccumulatedValues { get; set; } = 0;
     }
 }

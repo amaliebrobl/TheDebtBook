@@ -12,7 +12,7 @@ namespace TheDebtBook.Models
     {
         [PrimaryKey, AutoIncrement]
         public int ValueId { get; set; }
-        public int TotalValue { get; set; }
+        public int Value { get; set; }
         public DateTime Date { get; set; }
         public string Name { get; set; }
 

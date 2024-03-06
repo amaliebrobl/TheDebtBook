@@ -46,9 +46,9 @@ namespace TheDebtBook.Data
             return await query.FirstOrDefaultAsync();
         }
 
-        public async Task<Values> GetValue(string value)
+        public async Task<Values> GetValue(int valueid)
         {
-            var query = _connection.Table<Values>().Where(t => t.Value == value);
+            var query = _connection.Table<Values>().Where(t => t.ValueId == valueid);
 
             return await query.FirstOrDefaultAsync();
         }
