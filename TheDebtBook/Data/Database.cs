@@ -23,7 +23,7 @@ namespace TheDebtBook.Data
             {
                 Guid g = new Guid();
                 _dbEncryptionKey = g.ToString();
-                SecureStorage.SetAsync("dbKey",_dbEncryptionKey)
+                SecureStorage.SetAsync("dbKey", _dbEncryptionKey);
             }
             
             var dbOptions = new SQLiteConnectionString(databasePath, true);
