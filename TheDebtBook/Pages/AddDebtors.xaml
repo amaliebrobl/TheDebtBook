@@ -11,36 +11,27 @@
 
         <Label Grid.Row="0"
        Text="Add Debtor"
-	   SemanticProperties.HeadingLevel="Level1"
-	   SemanticProperties.Description="add debtor"
        HorizontalTextAlignment="Center"
        FontSize="Title"/>
 
         <Entry Grid.Row="1"
        HorizontalOptions="Center"
        Placeholder="Enter the name of the debtor"
-	   SemanticProperties.Hint="Name of the new debtor"
-       WidthRequest="300"
-	   Text="{Binding AddDebtorCommand}"
+       Text="{Binding Name}"
        />
 
         <Entry Grid.Row="2"
        HorizontalOptions="Center"
        Placeholder="Enter initial value"
-	   SemanticProperties.Hint="Initial Value"
-       WidthRequest="300"
-	   Text="{Binding AddDebtorCommand}"
+       Text="{Binding AddDebtorCommand}"
        />
 
         <Button Grid.Row="3"
                 Grid.Column="0"
         Text="Save"
-	    SemanticProperties.Hint="Saves the added name and initial value"
-        WidthRequest="100"
-        HeightRequest="50"
-        HorizontalOptions="Center"
+                HorizontalOptions="Center"
                 
-                Command="{Binding AddDebtorCommand}"
+                Command="{Binding AddValueCommand}"
         >
             <Button.Shadow>
                 <Shadow Brush="Black"
@@ -57,8 +48,6 @@
         WidthRequest="100"
         HeightRequest="50"
         HorizontalOptions="Center"
-                Clicked="CancelButtonClicked"
-        Command="{Binding CancelAddedDebtor}"
         >
             <Button.Shadow>
                 <Shadow Brush="Black"

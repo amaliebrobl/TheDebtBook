@@ -10,7 +10,7 @@ namespace TheDebtBook
         public MainPage()
         {
             InitializeComponent();
-            BindingContext = new MainViewModels();
+            
         }
 
         private void AddButtonClicked(object sender, EventArgs e)
