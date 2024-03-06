@@ -15,16 +15,10 @@ namespace TheDebtBook.Data
 
         public Database()
         {
-            var dataDir = FileSystem.AppDataDirectory;
-            var databasePath = Path.Combine(dataDir, "TheDebtBook.db");
-            string _dbEncryptionKey = SecureStorage.GetAsync("dbKey").Result;
+            var dataDirectory = FileSystem.AppDataDirectory;
+            var databasePath = Path.Combine(dataDirectory, "TheDebtBook.db");
 
-            if (string.IsNullOrEmpty(_dbEncryptionKey))
-            {
-                Guid g = new Guid();
-                _dbEncryptionKey = g.ToString();
-                SecureStorage.SetAsync("dbKey", _dbEncryptionKey);
-            }
+            Directory.CreateDirectory(dataDirectory);
 
             var dbOptions = new SQLiteConnectionString(databasePath, true);
             _connection = new SQLiteAsyncConnection(dbOptions);
@@ -37,6 +31,7 @@ namespace TheDebtBook.Data
         private async Task Initialise()
         {
             await _connection.CreateTableAsync<Debtor>();
+            await _connection.CreateTableAsync<Values>();
         }
 
         public async Task<List<Debtor>> GetDebtors()
@@ -51,7 +46,19 @@ namespace TheDebtBook.Data
             return await query.FirstOrDefaultAsync();
         }
 
-        public async Task<double> AddValue(Debtor value)
+        public async Task<Values> GetValue(string value)
+        {
+            var query = _connection.Table<Values>().Where(t => t.Value == value);
+
+            return await query.FirstOrDefaultAsync();
+        }
+
+        public async Task<double> AddDebtor(Debtor debtor)
+        {
+            return await _connection.InsertAsync(debtor);
+        }
+
+        public async Task<double> AddValue(Values value)
         {
             return await _connection.InsertAsync(value);
         }
@@ -61,9 +68,27 @@ namespace TheDebtBook.Data
             return await _connection.DeleteAsync(debtor);
         }
 
+        public async Task<int> DeleteValue(Values value)
+        {
+            return await _connection.DeleteAsync(value);
+        }
+
+
         public async Task<int> UpdateDebtorList(Debtor debtor)
         {
             return await _connection.UpdateAsync(debtor);
+        }
+
+        public async Task<int> UpdateValuesList(Values value)
+        {
+            return await _connection.UpdateAsync(value);
+        }
+
+        public async Task<List<Values>> GetAccumulatedValues(string name)
+        {
+            var query = _connection.Table<Values>().Where(t => t.Name == name);
+
+            return await query.ToListAsync();
         }
     }
 }
