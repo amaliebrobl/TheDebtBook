@@ -69,6 +69,9 @@
 	  <MauiXaml Update="Pages\AddDebtors.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Pages\DebtorListView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Pages\RegisteredList.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TheDebtBook.Pages.DebtorListView">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Label Text="values"
+               Grid.Row="0"
+               FontSize="Title"></Label>
+        <ListView x:Name="Name"
+                  Grid.Row="2"
+                  ItemsSource="{Binding Debtors}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Label Text="{Binding Name}"
+                                   Grid.Column="0"></Label>
+                            <Label Text="{Binding Accumulatedvalues,StringFormat='{0:C}'}"
+                                   Grid.Column="1"></Label>
+                            <Button Text="View Debtor"
+                                    Grid.Column="2"
+                                    Command="{Binding BindingContext.ViewDebtorCommand,Source={x:Reference Debtors}}"
+                                    CommandParameter="{Binding Id}"></Button>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</ContentView>
