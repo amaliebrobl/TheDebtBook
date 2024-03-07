@@ -31,7 +31,7 @@
         Text="Save"
                 HorizontalOptions="Center"
                 
-                Command="{Binding AddValueCommand}"
+                Command="{Binding AddDebtorCommand}"
         >
             <Button.Shadow>
                 <Shadow Brush="Black"

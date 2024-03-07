@@ -14,6 +14,10 @@
         <Label Text="values"
                Grid.Row="0"
                FontSize="Title"></Label>
+        <Button Text="Update"
+                Grid.Row="2"
+                Grid.Column="0"
+                Command="{Binding LoadDataCommand}"></Button>
         <ListView x:Name="Name"
                   Grid.Row="2"
                   ItemsSource="{Binding Debtors}">
